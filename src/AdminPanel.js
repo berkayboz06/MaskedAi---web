@@ -1,3 +1,5 @@
+
+import ContentManager from "./ContentManager";
 import React, { useState } from "react";
 import "./admin.css"; // Basit stiller için ayrı bir dosya
 
