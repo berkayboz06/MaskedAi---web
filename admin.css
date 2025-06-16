@@ -1,0 +1,25 @@
+.admin-container {
+  font-family: 'Segoe UI', sans-serif;
+  padding: 2rem;
+  background-color: #0d1117;
+  color: #f0f6fc;
+  min-height: 100vh;
+}
+
+.admin-tabs button {
+  margin-right: 1rem;
+  padding: 10px 20px;
+  background-color: #21262d;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.admin-tabs button:hover {
+  background-color: #30363d;
+}
+
+.admin-content {
+  margin-top: 2rem;
+}
