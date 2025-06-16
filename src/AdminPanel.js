@@ -1,28 +1,65 @@
 import React, { useState } from "react";
 
 export default function AdminPanel() {
-  const [textContent, setTextContent] = useState("");
+  const [entries, setEntries] = useState([]);
+  const [newEntry, setNewEntry] = useState("");
 
-  const handleSave = () => {
-    alert("İçerik başarıyla kaydedildi! 🌟\n\n" + textContent);
-    // İleride buraya API çağrısı ekleyebiliriz
+  const addEntry = () => {
+    if (newEntry.trim() === "") return;
+    setEntries([...entries, newEntry]);
+    setNewEntry("");
+  };
+
+  const deleteEntry = (index) => {
+    const updated = [...entries];
+    updated.splice(index, 1);
+    setEntries(updated);
   };
 
   return (
-    <div style={{ padding: "2rem", fontFamily: "Arial, sans-serif", maxWidth: 600, margin: "auto" }}>
-      <h2>MaskedAI Yönetici Paneli</h2>
-      <textarea
-        style={{ width: "100%", height: 150, fontSize: 16, padding: 10, borderRadius: 8, border: "1px solid #ccc" }}
-        placeholder="Buraya içerik yaz..."
-        value={textContent}
-        onChange={(e) => setTextContent(e.target.value)}
+    <div style={{ padding: "2rem", maxWidth: 600, margin: "auto", fontFamily: "Arial" }}>
+      <h2>MaskedAI - İçerik Yönetimi</h2>
+      <input
+        type="text"
+        placeholder="Yeni içerik başlığı..."
+        value={newEntry}
+        onChange={(e) => setNewEntry(e.target.value)}
+        style={{
+          width: "100%",
+          padding: "10px",
+          marginBottom: "10px",
+          borderRadius: "8px",
+          border: "1px solid #ccc"
+        }}
       />
-      <button
-        onClick={handleSave}
-        style={{ marginTop: 15, padding: "10px 20px", fontSize: 16, borderRadius: 8, backgroundColor: "#58a6ff", color: "white", border: "none", cursor: "pointer" }}
-      >
-        Kaydet
+      <button onClick={addEntry} style={{
+        padding: "10px 20px",
+        borderRadius: "8px",
+        backgroundColor: "#58a6ff",
+        color: "#fff",
+        border: "none",
+        marginBottom: "20px",
+        cursor: "pointer"
+      }}>
+        Ekle
       </button>
+
+      <ul>
+        {entries.map((entry, index) => (
+          <li key={index} style={{ marginBottom: "10px", background: "#f5f5f5", padding: "10px", borderRadius: "6px" }}>
+            {entry}
+            <button onClick={() => deleteEntry(index)} style={{
+              marginLeft: "10px",
+              backgroundColor: "#ff4d4f",
+              color: "white",
+              border: "none",
+              padding: "5px 10px",
+              borderRadius: "5px",
+              cursor: "pointer"
+            }}>Sil</button>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
