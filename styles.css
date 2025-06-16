@@ -1,1 +1,6 @@
-
+body {
+  background-color: white !important;
+  color: black !important;
+  margin: 20px;
+  font-family: Arial, sans-serif;
+}
